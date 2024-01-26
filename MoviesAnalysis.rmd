@@ -2,8 +2,105 @@
 title: "Movies Analysis"
 author: "Francisco Castillo, Fernanda Esquivel y Andrés Montoya"
 date: "29/01/2024"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
+Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas.
+## Variables cuantitativas
 ```{r}
-
+movies <- read.csv("movies.csv")
+summary(movies)
+if (!requireNamespace("knitr", quietly = TRUE)) {
+  install.packages("knitr")
+}
+library(knitr)
 ```
+### Budget
+```{r}
+hist(movies$budget, col = "lightblue", main = "Budget", xlab = "Budget")
+```
+### Revenue 
+```{r}
+hist(movies$revenue, col = "lightblue", main = "Revenue", xlab = "Revenue")
+```
+### Runtime
+```{r}
+hist(movies$runtime, col = "lightblue", main = "Runtime", xlab = "Runtime")
+```
+### Popularity
+```{r}
+hist(movies$popularity, col = "lightblue", main = "Popularity", xlab = "Popularity")
+```
+### Vote Average
+```{r}
+hist(movies$voteAvg, col = "lightblue", main = "Vote Average", xlab = "Vote Average")
+```
+### Vote Count
+```{r}
+hist(movies$voteCount, col = "lightblue", main = "Vote Count", xlab = "Vote Count")
+```
+### Genres Amount
+```{r}
+hist(movies$genresAmount, col = "lightblue", main = "Genres Amount", xlab = "Genres Amount")
+```
+### Production Companies Amount
+```{r}
+hist(movies$productionCoAmount, col = "lightblue", main = "Production Companies Amount", xlab = "Production Companies Amount")
+```
+### Production Countries Amount
+```{r}
+hist(movies$productionCountriesAmount, col = "lightblue", main = "Production Countries Amount", xlab = "Production Countries Amount")
+```
+### Actors Amount
+```{r}
+hist(movies$actorsAmount, col = "lightblue", main = "Actors Amount", xlab = "Actors Amount")
+```
+### Cast Women Amount
+```{r}
+movies$int_cast_women_amount <- as.integer(movies$castWomenAmount)
+hist(movies$int_cast_women_amount, col = "lightblue", main = "Cast Women Amount", xlab = "Cast Women Amount")
+```
+### Cast Men Amount
+```{r}
+movies$int_cast_men_amount <- as.integer(movies$castMenAmount)
+hist(movies$int_cast_men_amount, col = "lightblue", main = "Cast Men Amount", xlab = "Cast Men Amount")
+```
+
+## Variables cualitativas
+### Genres
+```{r}
+split_genres <- strsplit(movies$genres, "|", fixed = TRUE)
+genres <- unlist(split_genres)
+genres_freq <- table(genres)
+genres_freq_table <- as.data.frame(genres_freq)
+colnames(genres_freq_table) <- c("Genres", "Frequency")
+print(genres_freq_table)
+```
+### Production Companies
+```{r}
+split_prod_company <- strsplit(movies$productionCompany, "|", fixed = TRUE)
+prod_company <- unlist(split_prod_company)
+prod_company_freq <- table(prod_company)
+prod_company_freq_table <- as.data.frame(prod_company_freq)
+colnames(prod_company_freq_table) <- c("Production Companies", "Frequency")
+print(tail(prod_company_freq_table, n = 10))
+```
+### Production Companie Countries
+```{r}
+split_prod_company_country <- strsplit(movies$productionCompanyCountry, "|", fixed = TRUE)
+prod_company_country <- unlist(split_prod_company_country)
+prod_company_country_freq <- table(prod_company_country)
+prod_company_country_freq_table <- as.data.frame(prod_company_country_freq)
+colnames(prod_company_country_freq_table) <- c("Production Companies Countries", "Frequency")
+print(tail(prod_company_country_freq_table, n = 10))
+```
+### Video
+```{r}
+video_freq <- table(movies$video)
+video_freq_table <- as.data.frame(video_freq)
+colnames(video_freq_table) <- c("Video", "Frequency")
+print(video_freq_table)
+```
+### 
+
