@@ -86,14 +86,23 @@ prod_company_freq_table <- as.data.frame(prod_company_freq)
 colnames(prod_company_freq_table) <- c("Production Companies", "Frequency")
 print(tail(prod_company_freq_table, n = 10))
 ```
-### Production Companie Countries
+### Production Company Countries
 ```{r}
 split_prod_company_country <- strsplit(movies$productionCompanyCountry, "|", fixed = TRUE)
 prod_company_country <- unlist(split_prod_company_country)
 prod_company_country_freq <- table(prod_company_country)
 prod_company_country_freq_table <- as.data.frame(prod_company_country_freq)
 colnames(prod_company_country_freq_table) <- c("Production Companies Countries", "Frequency")
-print(tail(prod_company_country_freq_table, n = 10))
+print(head(prod_company_country_freq_table, n = 10))
+```
+### Production Countries
+```{r}
+split_prod_country <- strsplit(movies$productionCountry, "|", fixed = TRUE)
+prod_country <- unlist(split_prod_country)
+prod_country_freq <- table(prod_country)
+prod_country_freq_table <- as.data.frame(prod_country_freq)
+colnames(prod_country_freq_table) <- c("Production Countries", "Frequency")
+print(head(prod_country_freq_table, n = 10))
 ```
 ### Video
 ```{r}
@@ -102,5 +111,27 @@ video_freq_table <- as.data.frame(video_freq)
 colnames(video_freq_table) <- c("Video", "Frequency")
 print(video_freq_table)
 ```
-### 
+### Director
+```{r}
+split_director <- strsplit(movies$director, "|", fixed = TRUE)
+director <- unlist(split_director)
+director_freq <- table(director)
+director_freq_table <- as.data.frame(director_freq)
+colnames(director_freq_table) <- c("Director", "Frequency")
+print(tail(director_freq_table, n = 10))
+```
+### Original Language
+```{r}
+original_language_freq <- table(movies$originalLanguage)
+original_language_freq_table <- as.data.frame(original_language_freq)
+colnames(original_language_freq_table) <- c("Original Language", "Frequency")
+print(original_language_freq_table)
+```
+### Release Date
+```{r}
+release_date_freq <- table(movies$releaseDate)
+release_date_freq_table <- as.data.frame(release_date_freq)
+colnames(release_date_freq_table) <- c("Release Date", "Frequency")
+print(head(release_date_freq_table, n = 10))
+```
 
