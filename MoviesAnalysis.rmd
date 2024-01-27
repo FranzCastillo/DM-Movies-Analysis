@@ -187,13 +187,38 @@ barplot(frecuencia_generos, main = "Frecuencia de Géneros (20 películas más r
 genero_principal_20_totales <- head(frecuencia_generos_total, 20)
 barplot(genero_principal_20_totales, main = "Frecuencia de Géneros", xlab = "Género", ylab = "Frecuencia")
 ```
-## 4.7
+## 4.7 ¿Las películas de qué genero principal obtuvieron mayores ganancias?
 ```{r}
 
 ```
 ## 4.8
+```{r}
+correlation <- cor(movies$actorsAmount, movies$revenue)
+cat("La correlación entre la cantidad de actores y las ganancias es:", correlation, "\n")
+cat("Esto sugiere que la cantidad de actores no influye en las ganancias de una película")
+
+movies$releaseDate <- as.Date(movies$releaseDate)
+años_recientes <- movies[movies$releaseDate >= as.Date("2020-01-01"), ]
+media_actores_ultimos_años <- mean(años_recientes$actorsAmount)
+media_actores_total <- mean(movies$actorsAmount)
+if (media_actores_ultimos_años > media_actores_total) {
+  cat("En los últimos años se han hecho películas con más actores en promedio.\n")
+  cat("Promedio de actores en los últimos años:", media_actores_ultimos_años, "\n")
+  cat("Promedio de actores en el total de películas:", media_actores_total, "\n")
+} else {
+  cat("En los últimos años no se han hecho películas con más actores en promedio.\n")
+  cat("Promedio de actores en los últimos años:", media_actores_ultimos_años, "\n")
+  cat("Promedio de actores en el total de películas:", media_actores_total, "\n")
+}
+```
 ## 4.9
+```{r}
+
+```
 ## 4.10
+```{r}
+
+```
 ## 4.11
 ## 4.12
 ## 4.13
