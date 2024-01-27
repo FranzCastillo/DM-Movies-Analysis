@@ -229,9 +229,16 @@ cat("Correlación entre ingresos y cantidad de hombres en el reparto:", cor_reve
 cat("Esto sugiere que la cantidad de hombres y mujeres en el reparto no influye en la popularidad de las peliculas")
 cat("Por otro lado, la correlación entre ingresos y la cantidad de mujeres en el reparto es mayor que la correlación entre ingresos y la cantidad de hombres en el reparto, lo que sugiere que la cantidad de mujeres en el reparto puede influir levemente en los ingresos de las películas que la cantidad de hombres en el reparto")
 ```
-## 4.10
+## 4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
 ```{r}
-
+movies <- movies[order(movies$voteAverage, decreasing = TRUE), ]
+top_20_movies <- head(movies, 20)
+split_directors <- strsplit(top_20_movies$director, "|", fixed = TRUE)
+all_directors <- unlist(split_directors)
+all_directors <- trimws(all_directors)
+unique_directors <- unique(all_directors)
+fixed_directors <- na.omit(unique_directors)
+print(fixed_directors)
 ```
 ## 4.11
 ## 4.12
