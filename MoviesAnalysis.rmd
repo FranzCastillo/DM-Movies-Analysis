@@ -232,13 +232,14 @@ cat("Por otro lado, la correlación entre ingresos y la cantidad de mujeres en e
 ## 4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
 ```{r}
 movies <- movies[order(movies$voteAverage, decreasing = TRUE), ]
-top_20_movies <- head(movies, 20)
+top_20_movies <- head(movies, 21)
 split_directors <- strsplit(top_20_movies$director, "|", fixed = TRUE)
 all_directors <- unlist(split_directors)
 all_directors <- trimws(all_directors)
 unique_directors <- unique(all_directors)
 fixed_directors <- na.omit(unique_directors)
-print(fixed_directors)
+enumerated_directors <- data.frame(Director = fixed_directors, Ranking = seq_along(fixed_directors))
+print(enumerated_directors)
 ```
 ## 4.11
 ## 4.12
