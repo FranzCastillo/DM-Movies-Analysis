@@ -6,15 +6,11 @@ output:
   html_document:
     df_print: paged
 ---
-Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas.
+# 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas.
 ## Variables cuantitativas
 ```{r}
 movies <- read.csv("movies.csv")
 summary(movies)
-if (!requireNamespace("knitr", quietly = TRUE)) {
-  install.packages("knitr")
-}
-library(knitr)
 ```
 ### Budget
 ```{r}
@@ -119,6 +115,38 @@ director_freq <- table(director)
 director_freq_table <- as.data.frame(director_freq)
 colnames(director_freq_table) <- c("Director", "Frequency")
 print(tail(director_freq_table, n = 10))
+```
+### Actors
+```{r}
+split_actors <- strsplit(movies$actors, "|", fixed = TRUE)
+actors <- unlist(split_actors)
+actors_freq <- table(actors)
+actors_freq_table <- as.data.frame(actors_freq)
+colnames(actors_freq_table) <- c("Actors", "Frequency")
+print(tail(actors_freq_table, n = 10))
+```
+### Actors Character
+```{r}
+split_actors_character <- strsplit(movies$actorsCharacter, "|", fixed = TRUE)
+actors_character <- unlist(split_actors_character)
+actors_character_freq <- table(actors_character)
+actors_character_freq_table <- as.data.frame(actors_character_freq)
+colnames(actors_character_freq_table) <- c("Actors Character", "Frequency")
+print(tail(actors_character_freq_table, n = 10))
+```
+### Original title
+```{r}
+original_title_freq <- table(movies$originalTitle)
+original_title_freq_table <- as.data.frame(original_title_freq)
+colnames(original_title_freq_table) <- c("Original Title", "Frequency")
+print(head(original_title_freq_table, n = 10))
+```
+### Title
+```{r}
+title_freq <- table(movies$title)
+title_freq_table <- as.data.frame(title_freq)
+colnames(title_freq_table) <- c("Title", "Frequency")
+print(head(title_freq_table, n = 10))
 ```
 ### Original Language
 ```{r}
