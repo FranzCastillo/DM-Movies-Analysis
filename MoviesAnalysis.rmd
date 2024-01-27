@@ -211,9 +211,23 @@ if (media_actores_ultimos_años > media_actores_total) {
   cat("Promedio de actores en el total de películas:", media_actores_total, "\n")
 }
 ```
-## 4.9
+## 4.9 ¿Es posible que la cantidad de hombres y mujeres en el reparto influya en la popularidad y los ingresos de las películas?
 ```{r}
+movies$castMenAmountInt <- as.integer(movies$castMenAmount)
+movies$castWomenAmountInt <- as.integer(movies$castWomenAmount)
+movies <- na.omit(movies[, c("popularity", "revenue", "castMenAmountInt", "castWomenAmountInt")])
+cor_popularity_women <- cor(movies$popularity, movies$castWomenAmountInt)
+cor_revenue_women <- cor(movies$revenue, movies$castWomenAmountInt)
+cor_popularity_men <- cor(movies$popularity, movies$castMenAmountInt)
+cor_revenue_men <- cor(movies$revenue, movies$castMenAmountInt)
 
+cat("Correlación entre popularidad y cantidad de mujeres en el reparto:", cor_popularity_women, "\n")
+cat("Correlación entre ingresos y cantidad de mujeres en el reparto:", cor_revenue_women, "\n")
+cat("Correlación entre popularidad y cantidad de hombres en el reparto:", cor_popularity_men, "\n")
+cat("Correlación entre ingresos y cantidad de hombres en el reparto:", cor_revenue_men, "\n")
+
+cat("Esto sugiere que la cantidad de hombres y mujeres en el reparto no influye en la popularidad de las peliculas")
+cat("Por otro lado, la correlación entre ingresos y la cantidad de mujeres en el reparto es mayor que la correlación entre ingresos y la cantidad de hombres en el reparto, lo que sugiere que la cantidad de mujeres en el reparto puede influir levemente en los ingresos de las películas que la cantidad de hombres en el reparto")
 ```
 ## 4.10
 ```{r}
