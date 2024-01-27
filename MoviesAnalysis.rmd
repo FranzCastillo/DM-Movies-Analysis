@@ -6,14 +6,14 @@ output:
   html_document:
     df_print: paged
 ---
-# 1. Haga una exploración rápida de sus datos, para eso haga un resumen de su conjunto de datos.
-# 2. Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
-# 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas.
-## Variables cuantitativas
 ```{r}
 movies <- read.csv("movies.csv")
 summary(movies)
 ```
+# 1. Haga una exploración rápida de sus datos, para eso haga un resumen de su conjunto de datos.
+# 2. Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
+# 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas.
+## Variables cuantitativas
 ### Budget
 ```{r}
 hist(movies$budget, col = "lightblue", main = "Budget", xlab = "Budget")
