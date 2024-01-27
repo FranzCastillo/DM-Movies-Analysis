@@ -172,6 +172,18 @@ print(head(release_date_freq_table, n = 10))
 ## 4.4
 ## 4.5
 ## 4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
+```{r}
+peliculas <- movies[order(movies$releaseDate, decreasing = TRUE), ]
+peliculas_20_mas_recientes <- head(peliculas, 20)
+generos <- unlist(strsplit(as.character(peliculas_20_mas_recientes$genres), "|", fixed = TRUE))
+generos <- trimws(generos)
+frecuencia_generos <- table(generos)
+genero_principal_20_mas_recientes <- names(head(sort(frecuencia_generos, decreasing = TRUE), 1))
+frecuencia_generos_total <- table(unlist(strsplit(as.character(movies$genres), "|", fixed = TRUE)))
+genero_predominante <- names(which.max(frecuencia_generos_total))
+cat("Género principal de las 20 películas más recientes:", genero_principal_20_mas_recientes, "\n")
+cat("Género predominante en el conjunto de datos:", genero_predominante, "\n")
+```
 ## 4.7
 ## 4.8
 ## 4.9
