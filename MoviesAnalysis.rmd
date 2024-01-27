@@ -166,12 +166,12 @@ print(head(release_date_freq_table, n = 10))
 ```
 
 # 4. Preguntas
-## 4.1
+## 4.1 
 ## 4.2
 ## 4.3
 ## 4.4
 ## 4.5
-## 4.6
+## 4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
 ## 4.7
 ## 4.8
 ## 4.9
