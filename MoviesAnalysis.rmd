@@ -338,6 +338,9 @@ histBudget <- hist(movies$budget, main = "Histograma de Presupuestos", xlab = "P
 
 #Histograma de ingresos
 histRevenue <- hist(movies$revenue, main = "Histograma de Ingresos", xlab = "Ingresos", col = "lightblue")
+
+print("La correlación obtenida indica una fuerte correlación positiva entre los presupuestos y los ingresos")
+print("A pesar de esto, no se puede afirmar que los altos presupuestos causen altos ingresos o viceversa")
 ```
 ## 4.12
 ```{r}
@@ -348,6 +351,9 @@ barplot(monthlySummary$revenue, names.arg = monthlySummary$releaseMonth,
         xlab = "Mes de Lanzamiento", ylab = "Ingreso Promedio", 
         main = "Ingresos promedio por mes de lanzamiento",
         col = "lightgreen")
+
+print("Debido a que hay ciertos meses con mejores ingresos promedio, se puede afirmar que el mes de lanzamiento influye en los ingresos de una película")
+```
 ```
 ## 4.13
 ```{r}
@@ -356,16 +362,16 @@ movies$releaseMonth <- format(movies$releaseDate, "%m")
 monthlySummary <- aggregate(revenue ~ releaseMonth, data = movies, FUN = function(x) c(mean(x), length(x)))
 
 #Ingresos promedio por mes
-barplot(monthlySummary$revenue[, 1], names.arg = monthlySummary$releaseMonth,
-        xlab = "Mes de Lanzamiento", ylab = "Ingreso Promedio",
-        main = "Ingresos promedio por mes de lanzamiento",
-        col = "lightpink")
+
 
 #Promedio de películas lanzadas por mes
 barplot(monthlySummary$revenue[, 2], names.arg = monthlySummary$releaseMonth,
         xlab = "Mes de Lanzamiento", ylab = "Cantidad Promedio de Películas",
         main = "Promedio de películas lanzadas por mes",
         col = "lightblue")
+
+print("En los meses de mayo, junio y julio se han lanzado las películas con mayores ingresos promedio")
+print("En los meses septiembre, octubre y noviembre se han lanzado la mayor cantidad de películas")
 ```
 ## 4.14
 ```{r}
