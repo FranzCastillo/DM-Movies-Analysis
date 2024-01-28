@@ -346,12 +346,26 @@ movies$releaseMonth <- format(movies$releaseDate, "%m")
 monthlySummary <- aggregate(revenue ~ releaseMonth, data = movies, FUN = mean)
 barplot(monthlySummary$revenue, names.arg = monthlySummary$releaseMonth, 
         xlab = "Mes de Lanzamiento", ylab = "Ingreso Promedio", 
-        main = "Ingresos Promedio por Mes de Lanzamiento",
+        main = "Ingresos promedio por mes de lanzamiento",
         col = "lightgreen")
 ```
 ## 4.13
 ```{r}
+movies$releaseDate <- as.Date(movies$releaseDate)
+movies$releaseMonth <- format(movies$releaseDate, "%m")
+monthlySummary <- aggregate(revenue ~ releaseMonth, data = movies, FUN = function(x) c(mean(x), length(x)))
 
+#Ingresos promedio por mes
+barplot(monthlySummary$revenue[, 1], names.arg = monthlySummary$releaseMonth,
+        xlab = "Mes de Lanzamiento", ylab = "Ingreso Promedio",
+        main = "Ingresos promedio por mes de lanzamiento",
+        col = "lightpink")
+
+#Promedio de películas lanzadas por mes
+barplot(monthlySummary$revenue[, 2], names.arg = monthlySummary$releaseMonth,
+        xlab = "Mes de Lanzamiento", ylab = "Cantidad Promedio de Películas",
+        main = "Promedio de películas lanzadas por mes",
+        col = "lightblue")
 ```
 ## 4.14
 ```{r}
