@@ -14,6 +14,33 @@ movies <- read.csv("data/movies.csv")
 summary(movies)
 ```
 # 2. Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
+    - Id: Cuantitativa discreta
+    - popularity: Cuantitativa continua
+    - budget: Cuantitativa continua
+    - revenue: Cuantitativa continua
+    - original_title: Cualitativa nominal
+    - originalLanguage: Cualitatitva nominal
+    - title: Cualitativa nominal
+    - homePage: Cualitativa nominal
+    - video: Cualitatitva nominal
+    - director: Cualitatitva nominal
+    - runtime: Cuantitativa continua
+    - genres: Cualitatitva nominal
+    - genresAmount: Cuantitativa discreta
+    - productionCompany: Cualitativa nominal
+    - productionCoAmount: Cuantitativa discreta
+    - productionCompanyCountry: Cualitativa nominal
+    - productionCountry: Cualitativa nominal
+    - productionCountriesAmount: Cuantitativa discreta
+    - releaseDate: Cualitativa nominal
+    - voteCount: Cuantitativa discreta
+    - voteAvg: Cuantitativa continua
+    - actors: Cualitativa nominal
+    - actorsPopularity: Cuantitativa continua
+    - actorsCharacter: Cualitativa nominal
+    - actorsAmount: Cuantitativa discreta
+    - castWomenAmount: Cuantitativa discreta
+    - castMenAmount: Cuantitativa discreta
 # 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas.
 ## Variables cuantitativas
 ### Budget
