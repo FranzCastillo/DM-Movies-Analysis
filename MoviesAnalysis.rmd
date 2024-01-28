@@ -8,9 +8,11 @@ output:
 ---
 ```{r}
 movies <- read.csv("data/movies.csv")
-summary(movies)
 ```
 # 1. Haga una exploración rápida de sus datos, para eso haga un resumen de su conjunto de datos.
+```{r}
+summary(movies)
+```
 # 2. Diga el tipo de cada una de las variables (cualitativa ordinal o nominal, cuantitativa continua, cuantitativa discreta)
 # 3. Investigue si las variables cuantitativas siguen una distribución normal y haga una tabla de frecuencias de las variables cualitativas.
 ## Variables cuantitativas
@@ -228,23 +230,17 @@ barplot(genero_principal_20_totales, main = "Frecuencia de Géneros", xlab = "G�
 
 ## 4.7 ¿Las películas de qué género principal obtuvieron mayores ganancias?
 ```{r}
-# Split genres by | and get the first genre. Group by that genre and sum the revenue
 split_genres <- strsplit(movies$genres, "|", fixed = TRUE)
-
-# Get the first genre
-first_genre <- sapply(split_genres, `[`, 1)
-
-# Add the first_genre as a new column to the movies data frame
-movies$first_genre <- first_genre
+genres <- unlist(split_genres)
 genres <- trimws(genres)
 movies$genres <- genres
 movies <- na.omit(movies[, c("genres", "revenue")])
 movies <- aggregate(movies$revenue, by = list(movies$genres), FUN = sum)
 colnames(movies) <- c("genres", "revenue")
 movies <- movies[order(movies$revenue, decreasing = TRUE), ]
-top_1_revenue_genre <- head(movies, 5)
-top_1_revenue_genre <- top_1_revenue_genre[, c("genres", "revenue")]
-print(top_1_revenue_genre)
+top_revenue_genre <- head(movies, 5)
+top_revenue_genre <- top_1_revenue_genre[, c("genres", "revenue")]
+print(top_revenue_genre)
 ```
 
 ## 4.8 ¿La cantidad de actores influye en los ingresos de las películas? ¿se han hecho películas con más actores en los últimos años?
