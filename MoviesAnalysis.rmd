@@ -321,8 +321,37 @@ fixed_directors <- na.omit(unique_directors)
 enumerated_directors <- data.frame(Director = fixed_directors, Ranking = seq_along(fixed_directors))
 print(enumerated_directors)
 ```
-## 4.11
+## 4.11 
+```{r}
+correlation <- cor(movies$budget, movies$revenue)
+print(paste("La correlación entre presupuesto y ingresos es: ", correlation))
+
+#Diagrama de dispersión
+moviesClean <- na.omit(movies[, c("budget", "revenue")])
+dispersion <- plot(moviesClean$budget, moviesClean$revenue,
+                   xlab = "Presupuesto", ylab = "Ingresos",
+                   main = "Presupuesto vs Ingresos",
+                   col = "lightpink")
+
+#Histograma de presupuestos
+histBudget <- hist(movies$budget, main = "Histograma de Presupuestos", xlab = "Presupuesto", col = "lavender")
+
+#Histograma de ingresos
+histRevenue <- hist(movies$revenue, main = "Histograma de Ingresos", xlab = "Ingresos", col = "lightblue")
+```
 ## 4.12
+```{r}
+
+```
 ## 4.13
+```{r}
+
+```
 ## 4.14
+```{r}
+
+```
 ## 4.15
+```{r}
+
+```
