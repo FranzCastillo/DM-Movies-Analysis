@@ -341,7 +341,13 @@ histRevenue <- hist(movies$revenue, main = "Histograma de Ingresos", xlab = "Ing
 ```
 ## 4.12
 ```{r}
-
+movies$releaseDate <- as.Date(movies$releaseDate)
+movies$releaseMonth <- format(movies$releaseDate, "%m")
+monthlySummary <- aggregate(revenue ~ releaseMonth, data = movies, FUN = mean)
+barplot(monthlySummary$revenue, names.arg = monthlySummary$releaseMonth, 
+        xlab = "Mes de Lanzamiento", ylab = "Ingreso Promedio", 
+        main = "Ingresos Promedio por Mes de Lanzamiento",
+        col = "lightgreen")
 ```
 ## 4.13
 ```{r}
