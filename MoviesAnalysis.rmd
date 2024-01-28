@@ -362,7 +362,10 @@ movies$releaseMonth <- format(movies$releaseDate, "%m")
 monthlySummary <- aggregate(revenue ~ releaseMonth, data = movies, FUN = function(x) c(mean(x), length(x)))
 
 #Ingresos promedio por mes
-
+barplot(monthlySummary$revenue[, 1], names.arg = monthlySummary$releaseMonth,
+        xlab = "Mes de Lanzamiento", ylab = "Ingreso Promedio",
+        main = "Ingresos promedio por mes de lanzamiento",
+        col = "lightpink")
 
 #Promedio de películas lanzadas por mes
 barplot(monthlySummary$revenue[, 2], names.arg = monthlySummary$releaseMonth,
@@ -375,7 +378,12 @@ print("En los meses septiembre, octubre y noviembre se han lanzado la mayor cant
 ```
 ## 4.14
 ```{r}
+correlation <- cor(movies$voteAvg, movies$revenue, use = "complete.obs")
 
+print(paste("La correlación entre calificaciones y ingresos es :", correlation))
+
+print("La correlación obtenida indica una débil correlación positiva entre las calificaciones y los ingresos")
+print("Esta correlación no es lo suficientemente fuerte para afirmar una relación directa y significativa entre las calificaciones y el éxito comercial de las películas")
 ```
 ## 4.15
 ```{r}
