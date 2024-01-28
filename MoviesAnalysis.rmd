@@ -387,5 +387,7 @@ print("Esta correlación no es lo suficientemente fuerte para afirmar una relaci
 ```
 ## 4.15
 ```{r}
+longestMovies <- subset(movies, runtime == max(runtime))
+print(paste("El género principal de las películas más largas es", longestMovies$genres))
 
 ```
