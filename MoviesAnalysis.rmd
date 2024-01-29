@@ -194,6 +194,13 @@ colnames(release_date_freq_table) <- c("Release Date", "Frequency")
 print(head(release_date_freq_table, n = 10))
 ```
 
+Respecto a los histogramas de las variables cuantitativas, se puede observar que muy pocas de ellas sigue una distribución normal.
+Las variables que siguen una distribución normal son: Run Time, Vote Average y Genres Amount. De estas variables, Run Time y Genres Amount cuentan con una distribución asimétrica positiva.
+Las variables de Vote Average y Genres Amount poseen una curtosis mesocúrtica, mientras que Run Time posee una curtosis leptocúrtica.
+
+En el caso de las variables cualitativas, se puede observar que existen variables como Home Page que su frecuencia no aporta información relevante, por lo que se decidió no incluirla en este análisis. Pero puede ser útil para un análisis más profundo cuando se investigue de forma individual cada variable.
+
+
 # 4. Preguntas
 ## 4.1 ¿Cuáles son las 10 películas que contaron con más presupuesto?
 ```{r}
