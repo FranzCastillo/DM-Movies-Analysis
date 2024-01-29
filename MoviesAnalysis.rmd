@@ -337,7 +337,8 @@ fixed_directors <- na.omit(unique_directors)
 enumerated_directors <- data.frame(Director = fixed_directors, Ranking = seq_along(fixed_directors))
 print(enumerated_directors)
 ```
-## 4.11 
+## 4.11 ¿Cómo se correlacionan los presupuestos con los ingresos? ¿Los altos presupuestos significan altos ingresos? Haga los gráficos que necesite, histograma,
+diagrama de dispersión
 ```{r}
 correlation <- cor(movies$budget, movies$revenue)
 print(paste("La correlación entre presupuesto y ingresos es: ", correlation))
@@ -358,7 +359,7 @@ histRevenue <- hist(movies$revenue, main = "Histograma de Ingresos", xlab = "Ing
 print("La correlación obtenida indica una fuerte correlación positiva entre los presupuestos y los ingresos")
 print("A pesar de esto, no se puede afirmar que los altos presupuestos causen altos ingresos o viceversa")
 ```
-## 4.12
+## 4.12 ¿Se asocian ciertos meses de lanzamiento con mejores ingresos?
 ```{r}
 movies$releaseDate <- as.Date(movies$releaseDate)
 movies$releaseMonth <- format(movies$releaseDate, "%m")
@@ -370,8 +371,7 @@ barplot(monthlySummary$revenue, names.arg = monthlySummary$releaseMonth,
 
 print("Debido a que hay ciertos meses con mejores ingresos promedio, se puede afirmar que el mes de lanzamiento influye en los ingresos de una película")
 ```
-```
-## 4.13
+## 4.13 ¿En qué meses se han visto los lanzamientos con mejores ingresos?¿cuantas películas, en promedio, se han lanzado por mes?
 ```{r}
 movies$releaseDate <- as.Date(movies$releaseDate)
 movies$releaseMonth <- format(movies$releaseDate, "%m")
@@ -392,7 +392,7 @@ barplot(monthlySummary$revenue[, 2], names.arg = monthlySummary$releaseMonth,
 print("En los meses de mayo, junio y julio se han lanzado las películas con mayores ingresos promedio")
 print("En los meses septiembre, octubre y noviembre se han lanzado la mayor cantidad de películas")
 ```
-## 4.14
+## 4.14 ¿Cómo se correlacionan las calificaciones con el éxito comercial?
 ```{r}
 correlation <- cor(movies$voteAvg, movies$revenue, use = "complete.obs")
 
@@ -401,7 +401,7 @@ print(paste("La correlación entre calificaciones y ingresos es :", correlation)
 print("La correlación obtenida indica una débil correlación positiva entre las calificaciones y los ingresos")
 print("Esta correlación no es lo suficientemente fuerte para afirmar una relación directa y significativa entre las calificaciones y el éxito comercial de las películas")
 ```
-## 4.15
+## 4.15 ¿A qué género principal pertenecen las películas más largas?
 ```{r}
 longestMovies <- subset(movies, runtime == max(runtime))
 print(paste("El género principal de las películas más largas es", longestMovies$genres))
