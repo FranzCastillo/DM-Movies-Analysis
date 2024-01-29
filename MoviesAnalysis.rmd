@@ -243,6 +243,7 @@ movies_per_year_table <- as.data.frame(movies_per_year)
 colnames(movies_per_year_table) <- c("Year", "Movies")
 print(movies_per_year_table)
 barplot(movies_per_year, main = "Movies per Year", xlab = "Year", ylab = "Movies")
+cat("El año en el que se hicieron más películas fue el 2021")
 ```
 
 ## 4.6 ¿Cuál es el género principal de las 20 películas más recientes? ¿Cuál es el género principal que predomina en el conjunto de datos? Represéntelo usando un gráfico
@@ -323,8 +324,11 @@ cat("Por otro lado, la correlación entre ingresos y la cantidad de mujeres en e
 ```
 ## 4.10 ¿Quiénes son los directores que hicieron las 20 películas mejor calificadas?
 ```{r}
-movies <- movies[order(movies$voteAverage, decreasing = TRUE), ]
-top_20_movies <- head(movies, 21)
+movies <- read.csv("data/movies.csv")
+vote_average_fixed <- as.numeric(movies$voteAvg)
+vote_average_fixed <- na.omit(vote_average_fixed)
+movies <- movies[order(vote_average_fixed, decreasing = TRUE), ]
+top_20_movies <- head(movies, 20)
 split_directors <- strsplit(top_20_movies$director, "|", fixed = TRUE)
 all_directors <- unlist(split_directors)
 all_directors <- trimws(all_directors)
