@@ -265,16 +265,21 @@ barplot(genero_principal_20_totales, main = "Frecuencia de Géneros", xlab = "G�
 ## 4.7 ¿Las películas de qué género principal obtuvieron mayores ganancias?
 ```{r}
 split_genres <- strsplit(movies$genres, "|", fixed = TRUE)
-genres <- unlist(split_genres)
-genres <- trimws(genres)
-movies$genres <- genres
-movies <- na.omit(movies[, c("genres", "revenue")])
-movies <- aggregate(movies$revenue, by = list(movies$genres), FUN = sum)
-colnames(movies) <- c("genres", "revenue")
-movies <- movies[order(movies$revenue, decreasing = TRUE), ]
-top_revenue_genre <- head(movies, 5)
-top_revenue_genre <- top_1_revenue_genre[, c("genres", "revenue")]
-print(top_revenue_genre)
+all_genres <- unlist(split_genres)
+all_genres <- trimws(all_genres)
+unique_genres <- unique(all_genres)
+unique_genres <- na.omit(unique_genres)
+enumerated_genres <- data.frame(Genre = unique_genres)
+
+average_revenue_per_genre <- c()
+for (genre in unique_genres) {
+  genre_movies <- movies[grep(genre, movies$genres), ]
+  average_revenue <- mean(genre_movies$revenue)
+  average_revenue_per_genre <- c(average_revenue_per_genre, average_revenue)
+}
+enumerated_genres$AverageRevenue <- average_revenue_per_genre
+enumerated_genres <- enumerated_genres[order(enumerated_genres$AverageRevenue, decreasing = TRUE), ]
+print(enumerated_genres)
 ```
 
 ## 4.8 ¿La cantidad de actores influye en los ingresos de las películas? ¿se han hecho películas con más actores en los últimos años?
